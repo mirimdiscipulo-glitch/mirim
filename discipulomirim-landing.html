@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discípulo Mirim – Aprender é uma aventura!</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            nunito: ['Nunito', 'sans-serif'],
+            quicksand: ['Quicksand', 'sans-serif'],
+          },
+          colors: {
+            sky: {
+              brand: '#00AEEF',
+              light: '#E0F7FF',
+              dark: '#0090C9',
+            },
+            sun: {
+              DEFAULT: '#FFD54F',
+              dark: '#FFC107',
+            },
+            orange: {
+              brand: '#FF7043',
+              light: '#FFF3F0',
+            },
+          },
+          borderRadius: {
+            '2xl': '1.25rem',
+            '3xl': '1.5rem',
+            '4xl': '2rem',
+          },
+          boxShadow: {
+            soft: '0 8px 30px rgba(0,0,0,0.08)',
+            card: '0 6px 24px rgba(0,174,239,0.15)',
+            btn: '0 4px 14px rgba(0,174,239,0.35)',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            },
+            wiggle: {
+              '0%, 100%': { transform: 'rotate(-2deg)' },
+              '50%': { transform: 'rotate(2deg)' },
+            },
+          },
+          animation: {
+            float: 'float 4s ease-in-out infinite',
+            wiggle: 'wiggle 2s ease-in-out infinite',
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    * { font-family: 'Nunito', sans-serif; }
+
+    /* Gradient background for hero */
+    .hero-gradient {
+      background: linear-gradient(135deg, #E0F7FF 0%, #ffffff 60%, #FFF8E1 100%);
+    }
+
+    /* Blob decorations */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    /* Card hover lift */
+    .card-hover {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,174,239,0.2);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #f0f9ff; }
+    ::-webkit-scrollbar-thumb { background: #00AEEF; border-radius: 999px; }
+
+    /* Stars pattern in hero */
+    .star {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #00AEEF;
+      opacity: 0.2;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800 overflow-x-hidden">
+
+  <!-- ===================== BARRA DE OFERTA ===================== -->
+  <div class="w-full bg-orange-brand text-white text-center py-2.5 px-4 font-extrabold text-sm tracking-wide z-50 relative">
+    🎁 85% OFF — Somente Hoje! Garanta agora e economize!
+  </div>
+
+  <!-- ===================== LOGO TOPO ===================== -->
+  <div class="w-full flex justify-start px-8 pt-5 absolute top-10 left-0 z-50">
+    <a href="#" class="flex items-center gap-3 group">
+      <div class="w-11 h-11 rounded-2xl bg-[#00AEEF] flex items-center justify-center shadow-btn group-hover:scale-110 transition-transform">
+        <span class="text-white text-xl font-black">DM</span>
+      </div>
+      <div class="leading-tight">
+        <span class="block text-[#00AEEF] font-black text-lg tracking-tight">Discípulo</span>
+        <span class="block text-orange-brand font-black text-sm -mt-1 tracking-tight">Mirim</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- ===================== HERO SECTION ===================== -->
+  <section id="inicio" class="hero-gradient relative pt-24 pb-20 overflow-hidden min-h-screen flex items-center">
+
+    <!-- Blob decorations -->
+    <div class="blob w-96 h-96 bg-[#00AEEF] -top-20 -left-20"></div>
+    <div class="blob w-72 h-72 bg-sun top-32 right-10"></div>
+    <div class="blob w-56 h-56 bg-orange-brand bottom-10 left-1/3"></div>
+
+    <!-- Floating dots -->
+    <div class="star top-40 left-1/4 animate-wiggle"></div>
+    <div class="star top-20 right-1/3 w-6 h-6 animate-float" style="animation-delay:.5s"></div>
+    <div class="star bottom-32 right-1/4 w-4 h-4 animate-wiggle" style="animation-delay:1s"></div>
+
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+
+      <!-- Text content -->
+      <div class="text-center md:text-left">
+
+        <h1 class="text-4xl md:text-6xl font-black leading-tight text-gray-900 mb-5">
+          Ensine seu filho sobre
+          <span class="bg-sun text-gray-900 px-2 rounded-lg inline-block">Deus</span><br/>
+          sem brigas, sem tédio…<br/>
+          <span class="text-gray-700 text-3xl md:text-4xl font-extrabold">e sem precisar saber ensinar</span>
+        </h1>
+
+        <p class="text-gray-500 text-base font-semibold mb-6 max-w-md mx-auto md:mx-0 leading-relaxed">
+          Com o <strong class="text-gray-700">Discípulo Mirim</strong> você transforma momentos comuns em memórias que aproximam seu filho de Deus — com atividades simples, divertidas e feitas para a mente da criança.
+        </p>
+
+        <!-- Trust badges -->
+        <div class="flex flex-wrap gap-x-5 gap-y-2 justify-center md:justify-start mb-7 text-xs font-bold text-gray-500">
+          <span class="flex items-center gap-1.5">🌟 30 Dias de Garantia</span>
+          <span class="flex items-center gap-1.5">💳 Pagamento Único</span>
+          <span class="flex items-center gap-1.5">🔄 Atualizações Mensais</span>
+          <span class="flex items-center gap-1.5">♾️ Acesso Vitalício</span>
+        </div>
+
+        <a href="#preco"
+           class="inline-block bg-[#00AEEF] text-white font-extrabold px-10 py-4 rounded-2xl shadow-btn
+                  hover:bg-sky-dark hover:scale-105 transition-all duration-200 text-base uppercase tracking-wide mb-5">
+          QUERO ENSINAR MEU FILHO HOJE →
+        </a>
+
+        <!-- Stars rating -->
+        <div class="flex items-center gap-2 justify-center md:justify-start">
+          <span class="text-sun text-xl">★★★★★</span>
+          <span class="text-gray-500 font-semibold text-sm">(4,9/5.0) | +5.000 famílias</span>
+        </div>
+      </div>
+
+      <!-- Hero Image -->
+      <div class="flex justify-center">
+        <div class="relative">
+          <img
+            src="imagens/kit-principal-com-criancas-sem-fundo-1024x683.png"
+            alt="Kit Discípulo Mirim com crianças"
+            class="w-full max-w-md md:max-w-lg drop-shadow-2xl animate-float"
+          />
+
+          <!-- Floating badges around image -->
+          <div class="absolute -top-4 -right-4 bg-white rounded-2xl shadow-soft px-3 py-2 flex items-center gap-2 animate-wiggle">
+            <span class="text-2xl">📖</span>
+            <div>
+              <p class="text-xs font-black text-gray-700">Bíblia Kids</p>
+              <p class="text-xs text-gray-400">+120 histórias</p>
+            </div>
+          </div>
+          <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-soft px-3 py-2 flex items-center gap-2" style="animation:float 3s ease-in-out infinite; animation-delay:1s">
+            <span class="text-2xl">🎮</span>
+            <div>
+              <p class="text-xs font-black text-gray-700">Mini Games</p>
+              <p class="text-xs text-gray-400">Aprender jogando</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Wave separator -->
+    <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#ffffff"/>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- ===================== FEATURES STRIP ===================== -->
+  <section class="bg-white py-10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        {[
+          ['🎯', 'Conteúdo Bíblico', 'Fundamentado na Palavra'],
+          ['🎨', 'Atividades Criativas', 'Pintura e desenho'],
+          ['🎵', 'Músicas e Louvores', 'Letras divertidas'],
+          ['🏆', 'Sistema de Conquistas', 'Medalhas e prêmios'],
+        ].map(([icon, title, sub]) => `
+          <div class="flex items-center gap-3 bg-sky-light rounded-3xl px-4 py-3">
+            <span class="text-3xl">${icon}</span>
+            <div>
+              <p class="font-black text-gray-800 text-sm">${title}</p>
+              <p class="text-xs text-gray-500">${sub}</p>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Render features strip via JS since Tailwind CDN doesn't support template literals in HTML
+    const features = [
+      ['🎯', 'Conteúdo Bíblico', 'Fundamentado na Palavra'],
+      ['🎨', 'Atividades Criativas', 'Pintura e desenho'],
+      ['🎵', 'Músicas e Louvores', 'Letras divertidas'],
+      ['🏆', 'Conquistas', 'Medalhas e prêmios'],
+    ];
+    const strip = document.querySelector('section.bg-white.py-10 .grid');
+    if (strip) {
+      strip.innerHTML = features.map(([icon, title, sub]) => `
+        <div class="flex items-center gap-3 bg-sky-light rounded-3xl px-4 py-3 shadow-soft">
+          <span class="text-3xl">${icon}</span>
+          <div>
+            <p class="font-black text-gray-800 text-sm">${title}</p>
+            <p class="text-xs text-gray-500">${sub}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+  </script>
+
+
+  <!-- ===================== BÔNUS SECTION ===================== -->
+  <section class="py-20 bg-[#00AEEF] relative overflow-hidden">
+    <div class="blob w-80 h-80 bg-white top-0 right-0 opacity-5"></div>
+    <div class="blob w-64 h-64 bg-sun bottom-0 left-0 opacity-10"></div>
+
+    <div class="max-w-3xl mx-auto px-6 relative z-10 text-center">
+
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 bg-orange-brand text-white font-extrabold px-6 py-2 rounded-full mb-8 text-sm uppercase tracking-widest shadow-md">
+        🎁 Oferta Especial
+      </div>
+
+      <h2 class="text-3xl md:text-5xl font-black text-white mb-3 leading-tight">
+        E ainda hoje você recebe
+        <span class="text-sun"> 4 bônus exclusivos</span>
+      </h2>
+      <p class="text-white/80 font-semibold mb-12 text-base max-w-xl mx-auto">
+        Levando o conjunto Discípulo Mirim agora, você não paga nada por estes materiais extras.
+      </p>
+
+      <!-- Bonus cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
+
+        <!-- Bonus 1 -->
+        <div class="bg-white/15 backdrop-blur-sm border border-white/20 rounded-3xl p-6 text-center card-hover">
+          <img src="imagens/guia-do-pai-cristao-3-150x150.png" alt="Guia do Pai Cristão" class="w-36 h-36 object-cover rounded-2xl mx-auto mb-4 shadow-soft"/>
+          <p class="text-white/70 text-xs font-bold uppercase tracking-widest mb-1">Conjunto</p>
+          <h3 class="text-white font-extrabold text-lg mb-4">Guia do Pai Cristão</h3>
+          <div class="border-t border-white/20 pt-4">
+            <p class="text-red-300 font-bold text-sm line-through mb-1">De R$ 9,90</p>
+            <p class="text-sun font-black text-xl">GRÁTIS HOJE</p>
+          </div>
+        </div>
+
+        <!-- Bonus 2 -->
+        <div class="bg-white/15 backdrop-blur-sm border border-white/20 rounded-3xl p-6 text-center card-hover">
+          <img src="imagens/meu-primeiro-guia-de-oracao-1-150x150.png" alt="Guia de Oração" class="w-36 h-36 object-cover rounded-2xl mx-auto mb-4 shadow-soft"/>
+          <p class="text-white/70 text-xs font-bold uppercase tracking-widest mb-1">Conjunto</p>
+          <h3 class="text-white font-extrabold text-lg mb-4">Guia de Oração</h3>
+          <div class="border-t border-white/20 pt-4">
+            <p class="text-red-300 font-bold text-sm line-through mb-1">De R$ 9,90</p>
+            <p class="text-sun font-black text-xl">GRÁTIS HOJE</p>
+          </div>
+        </div>
+
+        <!-- Bonus 3 -->
+        <div class="bg-white/15 backdrop-blur-sm border border-white/20 rounded-3xl p-6 text-center card-hover">
+          <img src="imagens/a-historia-da-salvacao-2-150x150.png" alt="A História da Salvação" class="w-36 h-36 object-cover rounded-2xl mx-auto mb-4 shadow-soft"/>
+          <p class="text-white/70 text-xs font-bold uppercase tracking-widest mb-1">Conjunto</p>
+          <h3 class="text-white font-extrabold text-lg mb-4">A História da Salvação</h3>
+          <div class="border-t border-white/20 pt-4">
+            <p class="text-red-300 font-bold text-sm line-through mb-1">De R$ 9,90</p>
+            <p class="text-sun font-black text-xl">GRÁTIS HOJE</p>
+          </div>
+        </div>
+
+        <!-- Bonus 4 -->
+        <div class="bg-white/15 backdrop-blur-sm border border-white/20 rounded-3xl p-6 text-center card-hover">
+          <img src="imagens/Logo-150x150.png" alt="Discípulo Mirim" class="w-36 h-36 object-cover rounded-2xl mx-auto mb-4 shadow-soft"/>
+          <p class="text-white/70 text-xs font-bold uppercase tracking-widest mb-1">Discípulo Mirim</p>
+          <h3 class="text-white font-extrabold text-lg mb-4">1 Ano de Atualizações Mensais</h3>
+          <div class="border-t border-white/20 pt-4">
+            <p class="text-red-300 font-bold text-sm line-through mb-1">De R$ 39,90</p>
+            <p class="text-sun font-black text-xl">GRÁTIS HOJE</p>
+          </div>
+        </div>
+
+      </div>
+
+      <a href="#preco"
+         class="inline-block bg-orange-brand text-white font-extrabold px-12 py-4 rounded-3xl text-base
+                shadow-[0_6px_20px_rgba(255,112,67,0.5)] hover:bg-[#e64a2e] hover:scale-105 transition-all duration-200">
+        Garantir BÔNUS Agora →
+      </a>
+    </div>
+  </section>
+
+
+  <!-- ===================== COURSES / CARDS SECTION ===================== -->
+  <section id="cursos" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Section header -->
+      <div class="text-center mb-14">
+        <span class="inline-block bg-orange-light text-orange-brand font-bold text-xs px-4 py-1.5 rounded-full mb-4 tracking-wide">
+          📚 Aprendizado
+        </span>
+        <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+          Aprenda com
+          <span class="text-[#00AEEF]">diversão!</span>
+        </h2>
+        <p class="text-gray-500 font-semibold max-w-lg mx-auto">
+          Conteúdos cuidadosamente preparados para cada faixa etária, sempre com amor e alegria.
+        </p>
+      </div>
+
+      <!-- Cards grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Card 1 -->
+        <div class="card-hover bg-white rounded-4xl shadow-card overflow-hidden border border-sky-light">
+          <div class="h-48 bg-gradient-to-br from-[#00AEEF] to-[#0090C9] flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+              <div class="absolute top-2 left-4 text-8xl">✦</div>
+              <div class="absolute bottom-2 right-4 text-6xl">★</div>
+            </div>
+            <span class="text-7xl">📖</span>
+          </div>
+          <div class="p-6">
+            <span class="text-xs font-bold text-[#00AEEF] bg-sky-light px-3 py-1 rounded-full">4–6 anos</span>
+            <h3 class="font-black text-gray-900 text-xl mt-3 mb-2">Histórias Bíblicas</h3>
+            <p class="text-gray-500 font-semibold text-sm leading-relaxed">
+              As grandes histórias da Bíblia contadas de forma simples, colorida e cheia de magia para os pequenos.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card-hover bg-white rounded-4xl shadow-card overflow-hidden border border-orange-light">
+          <div class="h-48 bg-gradient-to-br from-orange-brand to-[#FF5722] flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+              <div class="absolute top-2 left-4 text-8xl">✦</div>
+              <div class="absolute bottom-2 right-4 text-6xl">★</div>
+            </div>
+            <span class="text-7xl">🎨</span>
+          </div>
+          <div class="p-6">
+            <span class="text-xs font-bold text-orange-brand bg-orange-light px-3 py-1 rounded-full">7–9 anos</span>
+            <h3 class="font-black text-gray-900 text-xl mt-3 mb-2">Arte & Criatividade</h3>
+            <p class="text-gray-500 font-semibold text-sm leading-relaxed">
+              Atividades artísticas baseadas nas parábolas e ensinamentos de Jesus, desenvolvendo fé e talento.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card-hover bg-white rounded-4xl shadow-card overflow-hidden border border-yellow-100">
+          <div class="h-48 bg-gradient-to-br from-sun to-sun-dark flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+              <div class="absolute top-2 left-4 text-8xl">✦</div>
+              <div class="absolute bottom-2 right-4 text-6xl">★</div>
+            </div>
+            <span class="text-7xl">🎵</span>
+          </div>
+          <div class="p-6">
+            <span class="text-xs font-bold text-yellow-700 bg-yellow-50 px-3 py-1 rounded-full">4–10 anos</span>
+            <h3 class="font-black text-gray-900 text-xl mt-3 mb-2">Músicas e Louvores</h3>
+            <p class="text-gray-500 font-semibold text-sm leading-relaxed">
+              Cante e dance com os melhores louvores infantis! Aprender os valores cristãos nunca foi tão divertido.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card-hover bg-white rounded-4xl shadow-card overflow-hidden border border-green-50">
+          <div class="h-48 bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+              <div class="absolute top-2 left-4 text-8xl">✦</div>
+              <div class="absolute bottom-2 right-4 text-6xl">★</div>
+            </div>
+            <span class="text-7xl">🎮</span>
+          </div>
+          <div class="p-6">
+            <span class="text-xs font-bold text-green-700 bg-green-50 px-3 py-1 rounded-full">6–12 anos</span>
+            <h3 class="font-black text-gray-900 text-xl mt-3 mb-2">Mini Games Bíblicos</h3>
+            <p class="text-gray-500 font-semibold text-sm leading-relaxed">
+              Quizzes, puzzles e jogos interativos para fixar os ensinamentos da Bíblia de forma divertida e envolvente.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="card-hover bg-white rounded-4xl shadow-card overflow-hidden border border-purple-50">
+          <div class="h-48 bg-gradient-to-br from-purple-400 to-violet-500 flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+              <div class="absolute top-2 left-4 text-8xl">✦</div>
+              <div class="absolute bottom-2 right-4 text-6xl">★</div>
+            </div>
+            <span class="text-7xl">🧩</span>
+          </div>
+          <div class="p-6">
+            <span class="text-xs font-bold text-purple-700 bg-purple-50 px-3 py-1 rounded-full">5–8 anos</span>
+            <h3 class="font-black text-gray-900 text-xl mt-3 mb-2">Devocional Kids</h3>
+            <p class="text-gray-500 font-semibold text-sm leading-relaxed">
+              Momentos especiais de oração e reflexão adaptados para que as crianças se conectem com Deus todo dia.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="card-hover bg-white rounded-4xl shadow-card overflow-hidden border border-pink-100">
+          <div class="h-48 bg-gradient-to-br from-pink-400 to-rose-500 flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+              <div class="absolute top-2 left-4 text-8xl">✦</div>
+              <div class="absolute bottom-2 right-4 text-6xl">★</div>
+            </div>
+            <svg viewBox="0 0 100 110" width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+              <!-- Cork lid -->
+              <rect x="30" y="8" width="40" height="14" rx="4" fill="#A0714F"/>
+              <rect x="26" y="18" width="48" height="6" rx="3" fill="#8B5E3C"/>
+              <!-- Jar body -->
+              <path d="M22 30 Q18 34 18 42 L18 88 Q18 96 26 96 L74 96 Q82 96 82 88 L82 42 Q82 34 78 30 Z" fill="rgba(255,255,255,0.35)" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
+              <!-- Shine -->
+              <path d="M26 36 Q24 50 25 65" stroke="rgba(255,255,255,0.5)" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <!-- Paper notes inside -->
+              <rect x="32" y="68" width="16" height="18" rx="2" fill="#FFD54F" transform="rotate(-10 32 68)"/>
+              <rect x="44" y="65" width="16" height="18" rx="2" fill="#81C784" transform="rotate(5 44 65)"/>
+              <rect x="56" y="67" width="14" height="16" rx="2" fill="#FF8A65" transform="rotate(-5 56 67)"/>
+              <rect x="38" y="72" width="14" height="15" rx="2" fill="#64B5F6" transform="rotate(8 38 72)"/>
+              <!-- Lines on notes -->
+              <line x1="34" y1="73" x2="44" y2="71" stroke="rgba(0,0,0,0.2)" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="34" y1="76" x2="43" y2="74" stroke="rgba(0,0,0,0.2)" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="p-6">
+            <span class="text-xs font-bold text-rose-600 bg-pink-50 px-3 py-1 rounded-full">4–12 anos</span>
+            <h3 class="font-black text-gray-900 text-xl mt-3 mb-2">Potinho da Oração</h3>
+            <p class="text-gray-500 font-semibold text-sm leading-relaxed">
+              90 orações para seu filho ler e se aproximar de Deus — um momento especial de fé a cada dia.
+            </p>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== TESTIMONIALS ===================== -->
+  <section id="sobre" class="py-20 bg-sky-light relative overflow-hidden">
+
+    <div class="blob w-64 h-64 bg-[#00AEEF] -top-10 right-0 opacity-20"></div>
+    <div class="blob w-48 h-48 bg-sun bottom-0 left-0 opacity-20"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="text-center mb-14">
+        <span class="inline-block bg-white text-[#00AEEF] font-bold text-xs px-4 py-1.5 rounded-full mb-4 tracking-wide shadow-soft">
+          💬 Depoimentos
+        </span>
+        <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4">
+          O que as famílias
+          <span class="text-[#00AEEF]">dizem</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Testimonial 1 -->
+        <div class="bg-white rounded-4xl p-6 shadow-soft card-hover">
+          <div class="flex gap-1 mb-4">
+            <span class="text-sun text-lg">★★★★★</span>
+          </div>
+          <p class="text-gray-600 font-semibold text-sm leading-relaxed mb-6">
+            "Minha filha adora! Ela acorda toda animada para fazer a lição do dia. As histórias são incríveis e muito bem ilustradas."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-[#00AEEF] to-sky-dark flex items-center justify-center text-white font-black">
+              M
+            </div>
+            <div>
+              <p class="font-black text-gray-800 text-sm">Maria Fernanda</p>
+              <p class="text-xs text-gray-400">Mãe da Ana, 6 anos</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="bg-white rounded-4xl p-6 shadow-soft card-hover">
+          <div class="flex gap-1 mb-4">
+            <span class="text-sun text-lg">★★★★★</span>
+          </div>
+          <p class="text-gray-600 font-semibold text-sm leading-relaxed mb-6">
+            "Como professora de escola bíblica, indico para todas as famílias. O conteúdo é rico e muito alinhado com a palavra de Deus."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-brand to-[#FF5722] flex items-center justify-center text-white font-black">
+              P
+            </div>
+            <div>
+              <p class="font-black text-gray-800 text-sm">Pastora Cláudia</p>
+              <p class="text-xs text-gray-400">Escola Bíblica – SP</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="bg-white rounded-4xl p-6 shadow-soft card-hover">
+          <div class="flex gap-1 mb-4">
+            <span class="text-sun text-lg">★★★★★</span>
+          </div>
+          <p class="text-gray-600 font-semibold text-sm leading-relaxed mb-6">
+            "Meu filho de 8 anos passou a ler a Bíblia sozinho depois que começou a usar a plataforma. Que transformação incrível!"
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center text-white font-black">
+              R
+            </div>
+            <div>
+              <p class="font-black text-gray-800 text-sm">Roberto Alves</p>
+              <p class="text-xs text-gray-400">Pai do Davi, 8 anos</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== PRICING / CTA ===================== -->
+  <section id="preco" class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="bg-gradient-to-r from-[#00AEEF] via-[#0090C9] to-[#0070A8] rounded-4xl p-10 md:p-14 text-center relative overflow-hidden shadow-card">
+
+        <!-- Decorative elements -->
+        <div class="absolute top-4 left-6 text-5xl opacity-20">★</div>
+        <div class="absolute bottom-4 right-6 text-4xl opacity-20">✦</div>
+        <div class="absolute top-8 right-16 text-3xl opacity-15">🌟</div>
+
+        <span class="text-6xl mb-6 block animate-float">🎁</span>
+
+        <h2 class="text-3xl md:text-5xl font-black text-white mb-3">
+          Comece a jornada hoje!
+        </h2>
+        <p class="text-white/80 font-semibold text-base mb-10 max-w-lg mx-auto">
+          Acesso completo a todos os cursos, músicas, jogos e materiais para transformar o aprendizado da sua criança.
+        </p>
+
+        <!-- Price card -->
+        <div class="w-full bg-white/15 backdrop-blur-sm border border-white/30 rounded-3xl px-6 md:px-10 py-8 mb-8">
+          <!-- Itens inclusos -->
+          <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-6">
+            <span class="text-white/90 font-semibold text-sm flex items-center gap-1.5"><span class="text-sun text-base">✔</span> +500 lições bíblicas</span>
+            <span class="text-white/90 font-semibold text-sm flex items-center gap-1.5"><span class="text-sun text-base">✔</span> Mini games</span>
+            <span class="text-white/90 font-semibold text-sm flex items-center gap-1.5"><span class="text-sun text-base">✔</span> Músicas e louvores</span>
+            <span class="text-white/90 font-semibold text-sm flex items-center gap-1.5"><span class="text-sun text-base">✔</span> Devocionais kids</span>
+            <span class="text-white/90 font-semibold text-sm flex items-center gap-1.5"><span class="text-sun text-base">✔</span> Atividades criativas</span>
+            <span class="text-white/90 font-semibold text-sm flex items-center gap-1.5"><span class="text-sun text-base">✔</span> Sistema de conquistas</span>
+          </div>
+
+          <!-- Price display -->
+          <div class="flex items-end justify-center gap-1 mb-1">
+            <span class="text-white/80 font-bold text-lg self-start mt-2">R$</span>
+            <span class="text-white font-black" style="font-size: 5rem; line-height: 1;">15</span>
+            <span class="text-white font-black text-4xl mb-2">,90</span>
+          </div>
+          <p class="text-white/70 font-semibold text-sm">pagamento único · acesso vitalício · atualizado todo mês</p>
+        </div>
+
+        <!-- CTA Button -->
+        <div>
+          <a href="https://pay.kirvano.com/414869ea-a2b0-4ef8-bf81-79e8a06a2944" target="_blank" rel="noopener"
+             class="inline-block bg-orange-brand text-white font-extrabold px-12 py-4 rounded-3xl text-lg
+                    shadow-[0_6px_20px_rgba(255,112,67,0.5)] hover:bg-[#e64a2e] hover:scale-105 transition-all duration-200">
+            🎉 Garantir Acesso Vitalício
+          </a>
+          <p class="text-white/50 font-semibold text-xs mt-4">Pagamento único e seguro · Acesso vitalício</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== CTA URGÊNCIA ===================== -->
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row items-center gap-10">
+
+        <!-- Image -->
+        <div class="w-full md:w-1/2 flex justify-center">
+          <img
+            src="imagens/conjunto-principal-1024x683.png"
+            alt="Conjunto Discípulo Mirim"
+            class="w-full max-w-md drop-shadow-xl"
+          />
+        </div>
+
+        <!-- Text -->
+        <div class="w-full md:w-1/2 text-center md:text-left">
+          <h2 class="text-2xl md:text-4xl font-black leading-tight mb-4">
+            <span class="text-[#00AEEF]">O tempo vai ensinar seu filho.</span><br/>
+            <span class="text-gray-800 text-xl md:text-2xl font-extrabold">A única questão é: com ou sem você?</span>
+          </h2>
+          <p class="text-gray-500 font-semibold text-sm leading-relaxed mb-6">
+            Cada dia que passa é uma oportunidade de plantar a semente da fé no coração do seu filho. O Discípulo Mirim está aqui para tornar isso simples e especial.
+          </p>
+          <a href="#preco"
+             class="inline-block bg-[#00AEEF] text-white font-extrabold px-10 py-4 rounded-2xl shadow-btn
+                    hover:bg-sky-dark hover:scale-105 transition-all duration-200 text-base">
+            Garanta agora o acesso
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ===================== FAQ ===================== -->
+  <section id="faq" class="py-16 bg-gray-50">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-black text-center text-gray-900 mb-10">
+        Perguntas <span class="text-[#00AEEF]">Frequentes</span>
+      </h2>
+
+      <div class="space-y-3" id="faqList"></div>
+    </div>
+  </section>
+
+  <script>
+    const faqs = [
+      {
+        q: 'O acesso é imediato?',
+        a: 'Sim! Assim que o pagamento for confirmado, você recebe automaticamente no seu e-mail os dados de acesso à plataforma. Em poucos minutos já poderá baixar os materiais e começar a utilizar com sua família ou alunos.',
+        open: true,
+      },
+      {
+        q: 'É material físico?',
+        a: 'Não. O Discípulo Mirim é um produto 100% digital. Você acessa e baixa todos os materiais diretamente pelo computador, celular ou tablet, de qualquer lugar do mundo.',
+      },
+      {
+        q: 'Posso imprimir quantas vezes quiser?',
+        a: 'Sim! Todos os materiais podem ser impressos quantas vezes você precisar, sem custo adicional. Ideal para usar com toda a turma ou família.',
+      },
+      {
+        q: 'Preciso ter experiência com ensino?',
+        a: 'Não precisa! Os materiais foram desenvolvidos para qualquer pai, mãe ou professor, independente de experiência. Tudo é simples, guiado e fácil de aplicar.',
+      },
+      {
+        q: 'As atualizações são automáticas?',
+        a: 'Sim. Sempre que novos materiais forem adicionados, você receberá acesso automaticamente, sem pagar nada a mais. Conteúdo sempre fresco e atualizado!',
+      },
+      {
+        q: 'A compra é segura?',
+        a: 'Sim, a compra é totalmente segura. Utilizamos a plataforma da Kirvano, que é uma das maiores plataformas de pagamento e entrega de produtos digitais do Brasil. Ela garante proteção dos seus dados, pagamento criptografado e acesso automático ao produto após a confirmação.',
+      },
+    ];
+
+    const faqList = document.getElementById('faqList');
+    faqs.forEach((item, i) => {
+      const div = document.createElement('div');
+      div.className = 'rounded-2xl overflow-hidden border border-gray-200 shadow-soft';
+      div.innerHTML = `
+        <button onclick="toggleFaq(${i})" class="w-full flex items-center justify-between px-6 py-4 font-extrabold text-gray-800 text-sm text-left transition-colors faq-btn-${i} ${item.open ? 'bg-[#00AEEF] text-white' : 'bg-white'}">
+          <span class="flex items-center gap-3">
+            <span class="faq-icon-${i} w-6 h-6 rounded-full border-2 flex items-center justify-center text-xs font-black flex-shrink-0 ${item.open ? 'border-white text-white' : 'border-gray-400 text-gray-400'}">${item.open ? '−' : '+'}</span>
+            ${item.q}
+          </span>
+          <span class="faq-chevron-${i} text-lg ${item.open ? 'text-white' : 'text-gray-400'}">›</span>
+        </button>
+        <div class="faq-body-${i} px-6 text-sm text-gray-600 font-semibold leading-relaxed bg-white transition-all ${item.open ? 'py-5' : 'py-0 max-h-0 overflow-hidden'}">
+          ${item.a}
+        </div>
+      `;
+      faqList.appendChild(div);
+    });
+
+    function toggleFaq(idx) {
+      faqs.forEach((_, i) => {
+        const btn = document.querySelector(`.faq-btn-${i}`);
+        const body = document.querySelector(`.faq-body-${i}`);
+        const icon = document.querySelector(`.faq-icon-${i}`);
+        const chevron = document.querySelector(`.faq-chevron-${i}`);
+        const isOpen = i === idx && body.classList.contains('py-0');
+        btn.className = btn.className.replace(/bg-\[#00AEEF\]|bg-white|text-white/g, '').trim();
+        btn.classList.add(isOpen ? 'bg-[#00AEEF]' : 'bg-white');
+        if (isOpen) btn.classList.add('text-white');
+        body.className = body.className.replace(/py-5|py-0|max-h-0|overflow-hidden/g, '').trim();
+        body.classList.add(...(isOpen ? ['py-5'] : ['py-0', 'max-h-0', 'overflow-hidden']));
+        icon.textContent = isOpen ? '−' : '+';
+        icon.className = icon.className.replace(/border-white|text-white|border-gray-400|text-gray-400/g, '').trim();
+        icon.classList.add(...(isOpen ? ['border-white', 'text-white'] : ['border-gray-400', 'text-gray-400']));
+        chevron.className = chevron.className.replace(/text-white|text-gray-400/g, '').trim();
+        chevron.classList.add(isOpen ? 'text-white' : 'text-gray-400');
+      });
+    }
+  </script>
+
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer id="contato" class="bg-[#00AEEF] text-white pt-14 pb-8">
+    <div class="max-w-lg mx-auto px-6 text-center">
+
+      <!-- Logo -->
+      <div class="flex flex-col items-center mb-8">
+        <div class="w-16 h-16 rounded-3xl bg-white/20 flex items-center justify-center mb-3">
+          <span class="text-white text-2xl font-black">DM</span>
+        </div>
+        <span class="font-black text-2xl leading-tight">Discípulo</span>
+        <span class="font-black text-orange-200 text-base -mt-1">Mirim</span>
+      </div>
+
+      <!-- Links -->
+      <nav class="flex flex-col gap-3 mb-10">
+        <a href="#inicio" class="text-white font-bold text-sm hover:text-orange-200 transition">Início</a>
+        <a href="#" class="text-white font-bold text-sm hover:text-orange-200 transition">Termos de Uso</a>
+        <a href="#" class="text-white font-bold text-sm hover:text-orange-200 transition">Políticas de Privacidade</a>
+        <a href="#" class="text-white font-bold text-sm hover:text-orange-200 transition">Política de Reembolso</a>
+      </nav>
+
+      <!-- Facebook disclaimer -->
+      <div class="border-t border-white/20 pt-6">
+        <p class="text-white/50 text-xs leading-relaxed">
+          Este site não faz parte do site do Facebook ou do Facebook Inc. Além disso, este site NÃO é endossado pelo Facebook de nenhuma maneira. FACEBOOK é uma marca comercial da FACEBOOK, Inc.
+        </p>
+        <p class="text-white/40 text-xs mt-4">© 2026 Discípulo Mirim. Todos os direitos reservados.</p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ===================== SCRIPTS ===================== -->
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const menu = document.getElementById('mobileMenu');
+          menu.classList.add('hidden');
+        }
+      });
+    });
+
+    // Intersection Observer for entrance animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card-hover, section h2').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
